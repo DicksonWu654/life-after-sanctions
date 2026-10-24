@@ -1,0 +1,45 @@
+Life After Sanctions — third-party notices
+
+Original project code and text use the terms in LICENSE. The components below
+retain their upstream licences and notices.
+
+- d3 7.9.0 — ISC; Copyright 2010–2023 Mike Bostock.
+  site/vendor/LICENSE-d3.txt; https://unpkg.com/d3@7.9.0/LICENSE
+- d3-sankey 0.12.3 — BSD-3-Clause; Copyright 2015 Mike Bostock.
+  site/vendor/LICENSE-d3-sankey.txt; https://unpkg.com/d3-sankey@0.12.3/LICENSE
+- topojson-client 3.1.0 — ISC; Copyright 2012–2019 Michael Bostock.
+  site/vendor/LICENSE-topojson-client.txt; https://unpkg.com/topojson-client@3.1.0/LICENSE
+- world-atlas 2.0.2 — ISC; Copyright 2013–2019 Michael Bostock.
+  site/vendor/LICENSE-world-atlas.txt; https://unpkg.com/world-atlas@2.0.2/LICENSE
+  Underlying Natural Earth map data: public domain; https://www.naturalearthdata.com/about/terms-of-use/
+- ISO alpha-3/numeric mapping from iso-3166-1 2.1.1 — MIT © Daniel Eckermann.
+  site/vendor/LICENSE-iso-3166-1.txt.
+  The package publishes its MIT declaration and copyright in README.md:
+  https://unpkg.com/iso-3166-1@2.1.1/README.md
+  It omits a licence file. The notice preserves that declaration alongside the
+  full MIT permission text from https://raw.githubusercontent.com/spdx/license-list-data/main/text/MIT.txt
+- Public Sans, @fontsource-variable/public-sans 5.3.0 — SIL OFL 1.1.
+  site/vendor/fonts/LICENSE-public-sans.txt (copyright and full OFL text).
+  https://unpkg.com/@fontsource-variable/public-sans@5.3.0/LICENSE
+- Special Elite, @fontsource/special-elite 5.3.0 — Apache-2.0.
+  site/vendor/fonts/LICENSE-special-elite.txt; fonts/NOTICE-special-elite.txt.
+  Copyright (c) 2010 Brian J. Bonislawsky DBA Astigmatic (AOETI).
+  https://unpkg.com/@fontsource/special-elite@5.3.0/LICENSE
+  https://raw.githubusercontent.com/google/fonts/main/apache/specialelite/METADATA.pb
+  Google's upstream Apache text is also retained as fonts/LICENSE-special-elite-upstream.txt.
+
+Redistributed public label sources: brian, daws, tornado, railgun, hop and
+op_registry (MIT); wormhole and arbitrum (Apache-2.0); ofac and r2_ofac
+(US-government factual records). Exact source versions, URLs, copyrights and
+licence texts are in data/labels/sources.json and data/labels/licenses/.
+See docs/LABELS.md for included and omitted sources.
+
+Sanctions facts: US Treasury / OFAC, attributed by source URL per record.
+Blockchain observations: public explorer/RPC sources recorded per row/request.
+Price sources: Coin Metrics Community, Binance and Gate-derived observations.
+The public export retains the price-source manifest and fetch script. The
+third-party price series and raw API captures stay in the local research cache.
+USD results retain the stated valuation times.
+
+Licence texts were retrieved 2026-10-24. Sources above are attribution links;
+this notice grants no additional rights over third-party material.

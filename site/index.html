@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Life After Sanctions</title>
+<!-- og:begin (tools/make_og.py rewrites this block from the data) -->
+<meta name="description" content="Tether blacklisted 341 of 341 OFAC-listed Tron addresses, 96 of them before the listing day began. Search all 1,148 OFAC-listed crypto addresses on 18 chains, with coverage notes for each.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Life After Sanctions">
+<meta property="og:title" content="Life After Sanctions: what happens to a crypto address once the US Treasury lists it">
+<meta property="og:description" content="Tether blacklisted 341 of 341 OFAC-listed Tron addresses, 96 of them before the listing day began. Search all 1,148 OFAC-listed crypto addresses on 18 chains, with coverage notes for each.">
+<meta property="og:url" content="https://life-after-sanctions.shadow654.chatgpt.site/">
+<meta property="og:image" content="https://life-after-sanctions.shadow654.chatgpt.site/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="341 of 341 OFAC-listed Tron addresses blacklisted by Tether; 96 before the listing day began.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Life After Sanctions: what happens to a crypto address once the US Treasury lists it">
+<meta name="twitter:description" content="Tether blacklisted 341 of 341 OFAC-listed Tron addresses, 96 of them before the listing day began. Search all 1,148 OFAC-listed crypto addresses on 18 chains, with coverage notes for each.">
+<meta name="twitter:image" content="https://life-after-sanctions.shadow654.chatgpt.site/og.png">
+<!-- og:end -->
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23b3261e'/%3E%3Crect x='6' y='13' width='20' height='6' fill='%23f4f6f0'/%3E%3C/svg%3E">
+<link rel="preload" href="vendor/fonts/special-elite-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="vendor/fonts/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<script>
+  /* theme: apply stored choice before first paint */
+  try { var t = localStorage.getItem('las-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/>
+    </filter>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" style="fill: var(--card)"/><line x1="0" y1="0" x2="0" y2="6" style="stroke: var(--ink-3); stroke-width: 1.6; stroke-opacity: 0.5"/>
+    </pattern>
+  </defs>
+</svg>
+
+<a class="skip" href="#findings">Skip to the findings</a>
+
+<div id="fixture-banner" class="fixture" role="status" hidden>
+  <strong>FIXTURE DATA</strong>
+  <span>Every number, address and balance on this page is fake placeholder data. Names, dates and links come from public OFAC records.</span>
+</div>
+
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#top">Life After Sanctions</a>
+    <nav aria-label="Sections" class="nav">
+      <a href="#findings">Findings</a>
+      <a href="#cases">Cases</a>
+      <a href="#freeze">Charts</a>
+      <a href="#explorer">Explorer</a>
+      <a href="#method">Method</a>
+    </nav>
+    <div class="top-tools">
+      <p class="refreshed" id="refreshed" aria-live="polite"><span class="refreshed-k">Data as of</span> <time id="refreshed-time">loading</time></p>
+      <button type="button" class="theme" id="theme" aria-pressed="false" aria-label="Dark mode"><span aria-hidden="true" class="theme-ico"></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero wrap" id="hero" aria-label="The main finding">
+  <p class="hero-lede" id="hero-lede">What happens to a crypto address after the US Treasury sanctions it?</p>
+  <div class="hero-grid">
+    <div class="hero-stat" id="hero-stat" aria-live="polite"><h1 class="hs-h1"><span class="hs-what">Life after sanctions</span></h1><p class="hs-lag">Loading the data</p></div>
+    <figure class="hero-chart">
+      <div id="hero-svg" class="chart" role="img" aria-label="Strip chart of freeze lag"></div>
+      <details class="drawer drawer-sm" id="hero-howto">
+        <summary>How to read this chart</summary>
+        <div class="drawer-body" id="hero-howto-body"></div>
+      </details>
+    </figure>
+  </div>
+  <p class="hero-cta"><a class="cta" href="#findings">See the findings <span aria-hidden="true">&darr;</span></a></p>
+  <p class="prov" id="prov" hidden></p>
+</section>
+
+<aside class="readfirst wrap" id="readfirst" aria-label="Read this first">
+  <details class="rf">
+    <summary><b>Read this first.</b> Research, not legal advice. Labels are leads, not proof. AI-assisted; may contain errors. <span class="rf-more">All notes</span></summary>
+    <ul>
+      <li>This is research. It is not legal or compliance advice.</li>
+      <li>&ldquo;Received funds from a sanctioned address&rdquo; is a factual on-chain statement, not an accusation. Exchanges may have frozen or reported those funds.</li>
+      <li>Labels such as &ldquo;mixer&rdquo; or &ldquo;exchange deposit&rdquo; are leads from public tags, not proof of who controls an address.</li>
+      <li>&ldquo;No outflow found&rdquo; means none within the data we checked; the coverage table under Method shows what that covers on each chain.</li>
+      <li>Compiled with the help of AI tools; may contain errors. Scripts reproduce the numbers; raw API captures are omitted for size. Corrections welcome.</li>
+    </ul>
+  </details>
+</aside>
+
+<section class="sec wrap" id="findings" aria-labelledby="findings-h">
+  <div class="sec-head">
+    <h2 id="findings-h">What we found</h2>
+    <p id="finds-open">Six things that stood out. Tap one to see where it comes from.</p>
+  </div>
+  <div class="tiles" id="finds"><p class="loading">Loading the numbers</p></div>
+  <p class="tiles-note" id="finds-note"></p>
+  <details class="drawer" id="finds-ev" data-pending>
+    <summary>Evidence and exact definitions for these six</summary>
+    <div class="drawer-body" id="finds-ev-body"></div>
+  </details>
+  <details class="drawer" id="finds-more" data-pending>
+    <summary id="finds-more-n">More from the data</summary>
+    <div class="drawer-body">
+      <div class="minis finds2" id="finds2"></div>
+      <details class="subdrawer" id="finds-rest" hidden>
+        <summary id="finds-rest-n">All other numbers</summary>
+        <div class="minis" id="finds-all"></div>
+      </details>
+    </div>
+  </details>
+</section>
+
+<section class="sec wrap" id="cases" aria-labelledby="cases-h">
+  <div class="sec-head">
+    <h2 id="cases-h">The listings everyone remembers</h2>
+    <p id="cases-open">Observed case histories, from address listing through the saved observation dates.</p>
+  </div>
+  <div class="spots" id="spots"><p class="loading">Loading the cases</p></div>
+  <h3 class="sub-h" id="cases-more-h" data-pending>Other cases, within observed histories</h3>
+  <div class="score" id="cases-grid"></div>
+  <p class="cap" id="score-note"></p>
+</section>
+
+<section class="sec wrap" id="exhibits" aria-labelledby="exhibits-h">
+  <div class="sec-head">
+    <h2 id="exhibits-h">The charts</h2>
+    <p id="exh-open">Who froze what, where the money went, when it moved and which countries the listings point to.</p>
+  </div>
+
+  <article class="exhibit" id="freeze" aria-labelledby="freeze-h">
+    <header>
+      <h3 id="freeze-h">How fast Tether and Circle froze</h3>
+      <p class="sub" id="freeze-open">The main chart is at the top of this page. The full version adds Tether on Ethereum and a table.</p>
+    </header>
+    <details class="drawer" id="freeze-drawer">
+      <summary>Full chart and summary table</summary>
+      <div class="drawer-body">
+        <div id="freeze-svg" class="chart tall" role="img" aria-label="Strip chart of freeze lag in time, by issuer and chain"></div>
+        <div class="legend" id="freeze-legend"></div>
+        <div id="freeze-table"></div>
+      </div>
+    </details>
+  </article>
+
+  <article class="exhibit" id="frozenby" aria-labelledby="frozenby-h">
+    <header>
+      <h3 id="frozenby-h">Where the frozen USDT sat, by OFAC name</h3>
+      <p class="sub" id="frozenby-open">USDT on Tron behind the addresses OFAC lists under each name, largest first.</p>
+    </header>
+    <div id="frozenby-body"><p class="loading">Loading</p></div>
+  </article>
+
+  <article class="exhibit" id="flow" aria-labelledby="flow-h">
+    <header>
+      <h3 id="flow-h">Where the money went</h3>
+      <p class="sub" id="flow-sub">Measured priced gross first-hop outflows after address listing, grouped by destination role.</p>
+    </header>
+    <div class="statpair" id="flow-stats"></div>
+    <div class="fpanel" id="flow-panel"></div>
+    <details class="drawer" id="flow-drawer">
+      <summary>Show the flow</summary>
+      <div class="drawer-body">
+        <div class="controls" id="flow-ctl"></div>
+        <div id="flow-svg" class="chart" role="img" aria-label="Flow diagram from programs or chains to destination types"></div>
+        <div class="legend" id="flow-legend"></div>
+        <details class="tview"><summary>Show as a table</summary><div id="flow-table"></div></details>
+        <p class="cap" id="flow-note"></p>
+      </div>
+    </details>
+  </article>
+
+  <article class="exhibit" id="timing" aria-labelledby="timing-h">
+    <header>
+      <h3 id="timing-h">When money moved, before and after listing</h3>
+      <p class="sub" id="timing-open">Tracked addresses, by whether they sent funds out after being listed.</p>
+    </header>
+    <div id="timing-sum"></div>
+    <details class="drawer" id="timing-drawer">
+      <summary>See every time band</summary>
+      <div class="drawer-body">
+        <div id="timing-svg" class="chart" role="img" aria-label="Bar chart of addresses by time to first outflow"></div>
+        <details class="tview"><summary>Show as a table</summary><div id="timing-table"></div></details>
+        <p class="cap" id="timing-note"></p>
+      </div>
+    </details>
+  </article>
+
+  <article class="exhibit" id="map" aria-labelledby="map-h">
+    <header>
+      <h3 id="map-h">Which countries the listings point to</h3>
+      <p class="sub" id="map-open">Countries OFAC links to each sanctions program through its entries.</p>
+    </header>
+    <div class="map-grid">
+      <label class="map-pick"><span>Light up a program</span><select id="prog-sel"></select></label>
+      <figure class="map-fig">
+        <div id="map-svg" class="chart" role="img" aria-label="World map shaded by the number of sanctions programs linked to each country"></div>
+        <figcaption id="map-cap" class="cap"></figcaption>
+      </figure>
+      <details class="drawer" id="prog-drawer">
+        <summary id="prog-drawer-n">All programs</summary>
+        <div class="drawer-body"><div class="prog-list" id="prog-list" role="group" aria-label="Sanctions programs"></div></div>
+      </details>
+    </div>
+  </article>
+</section>
+
+<section class="sec wrap" id="explorer" aria-labelledby="explorer-h">
+  <div class="sec-head">
+    <h2 id="explorer-h">Look up an address</h2>
+    <p id="explorer-open">Search by name, address, program or chain. Pick a row for its timeline.</p>
+  </div>
+  <form class="xfilters" id="xform" role="search" onsubmit="return false">
+    <label class="xsearch"><span class="vh">Search addresses</span>
+      <input id="xq" type="search" autocomplete="off" spellcheck="false" placeholder="Name, address, program or chain">
+    </label>
+    <details class="xmorefilters" id="xmorefilters">
+      <summary>More filters</summary>
+      <div class="xsels">
+        <label><span>Chain</span><select id="xchain"></select></label>
+        <label><span>Program</span><select id="xprog"></select></label>
+        <label><span>Status</span><select id="xstatus"></select></label>
+        <label><span>Sort by</span><select id="xsort"></select></label>
+      </div>
+    </details>
+  </form>
+  <p class="xtry" id="xtry" aria-label="Example searches"></p>
+  <p class="xcount" id="xcount" aria-live="polite"></p>
+  <div class="xgrid" id="xgrid">
+    <div class="xlist-wrap">
+      <table class="xtable" id="xtable">
+        <caption class="vh">Sanctioned addresses</caption>
+        <thead><tr>
+          <th scope="col">Address and entity</th><th scope="col" class="c-listed">Listed</th>
+          <th scope="col" id="th-val" class="c-value">Value</th><th scope="col">What happened</th>
+        </tr></thead>
+        <tbody id="xbody"></tbody>
+      </table>
+      <p class="xmore"><button type="button" id="xmore" class="btn" hidden>Show more</button></p>
+    </div>
+    <aside class="detail" id="detail" aria-label="Address timeline" tabindex="-1" hidden></aside>
+  </div>
+</section>
+
+<section class="sec wrap" id="method" aria-labelledby="method-h">
+  <div class="sec-head">
+    <h2 id="method-h">How this was made</h2>
+    <p id="method-open">Search the listed identifiers, sampled transfers and source links.</p>
+  </div>
+  <details class="drawer" id="method-drawer">
+    <summary>Method, coverage by chain and the data files</summary>
+    <div class="drawer-body">
+      <div class="method-grid">
+        <div>
+          <h3>What it adds to earlier work</h3>
+          <p>Earlier studies looked at Ethereum addresses alone (arXiv 2507.11721) or at Bitcoin transaction graphs around designation (arXiv 2409.10031), and the vendor blogs cover single actions. This site catalogues every mapped chain in the historical inventory, includes observed Tron histories, compares issuer blacklists with address-listing dates, measures pre-listing activity, and presents data as of <span id="asof-date">2026-10-23</span>. Rerun scripts/pipeline.py refresh to update.</p>
+          <h3>How the numbers are made</h3>
+          <p>The list comes from OFAC's Sanctions List Service; designation dates come from OFAC Recent Actions and press releases. Chain history comes from public datasets and explorers, where available. Every number is reproducible with the included scripts. Raw API captures are omitted for size; use scripts/pipeline.py refresh to re-fetch them, then rebuild to replay them. raw_ref values identify sources and requests to re-fetch through the request index and collectors. Per-address explorer rows link to public block explorers. Flow charts show gross first-hop transfers; later paths use the separate hop rule. USD values in results were computed from the price sources in data/prices/manifest.csv at the stated valuation times; the public export includes the manifest and fetch script, with price series omitted. Different units (addresses, entities, designation actions, USD, coins) are never added together.</p>
+        </div>
+        <div>
+          <h3>Coverage by chain</h3>
+          <div id="coverage"></div>
+        </div>
+      </div>
+      <h3 id="datafiles-h">Show me the data</h3>
+      <div id="datafiles" class="datafiles"></div>
+    </div>
+  </details>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p id="foot-refresh"></p>
+    <p><a href="#readfirst">How to read these figures</a></p>
+    <p class="foot-lib">Maps from Natural Earth via world-atlas. Charts with d3. Type: Special Elite and Public Sans. No cookies, no trackers, nothing loads from other sites.</p>
+  </div>
+</footer>
+
+<div id="tip" class="tip" role="tooltip" hidden></div>
+
+<script src="vendor/d3.min.js" defer></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

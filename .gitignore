@@ -1,0 +1,15 @@
+/.venv/
+/build/
+/logs/
+/data/raw/
+/data/timelines/
+/scripts/lib/.pipeline-work/
+__pycache__/
+*.pyc
+*.sqlite
+*.sqlite3
+*.db
+*.lock
+*.tmp
+.env
+.env.*
