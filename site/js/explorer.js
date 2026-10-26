@@ -203,7 +203,7 @@ export function initExplorer(D) {
       ? `${esc(daysPhrase(Math.round(r.last_outflow_before_days)))} the listing day${lastTx?.explorer_url ? ` (<a href="${esc(lastTx.explorer_url)}" rel="noopener noreferrer">transaction</a>)` : ''}`
       : 'none found within the data checked';
     const pw = r.pre_week_test;
-    const pwText = !pw ? '' : pw.eligible ? (pw.active ? 'Eligible. Moved funds out in the week before listing.' : 'Eligible. No outflow in the week before listing.') : 'Not eligible (needs a complete history and baseline weeks).';
+    const pwText = !pw ? '' : pw.eligible ? (pw.active ? 'Moved funds out in the week before listing.' : 'No funds moved out in the week before listing.') : 'Not enough history to test.';
     return `<div class="dhead">
       <button type="button" class="btn close" data-close>Close</button>
       <p class="ctag-l">${esc(chainName(r.chain))} <span class="valued">${esc(r.ticker || '')}</span></p>
@@ -216,10 +216,10 @@ export function initExplorer(D) {
         <div><dt>Value at listing</dt><dd>${r.balance_at_listing_usd ? `${esc(usdText(r.balance_at_listing_usd.value))} <span class="valued">${esc(valuedLabel(r.balance_at_listing_usd))}</span>` : 'n/a'}</dd></div>
         <div><dt>Value today</dt><dd>${r.balance_today_usd ? `${esc(usdText(r.balance_today_usd.value))} <span class="valued">${esc(valuedLabel(r.balance_today_usd))}</span>` : 'n/a'}</dd></div>
         ${r.trackable ? `<div><dt>Last outflow before listing</dt><dd>${lastOut}</dd></div>` : ''}
-        ${pwText ? `<div><dt>Pre-listing week test</dt><dd>${esc(pwText)}</dd></div>` : ''}
+        ${pwText ? `<div><dt>Week before listing</dt><dd>${esc(pwText)}</dd></div>` : ''}
       </dl>
       ${r.balance_scope ? `<p class="cap">${esc(r.balance_scope)}${r.unpriced_assets_today_count ? ` ${esc(int(r.unpriced_assets_today_count))} other assets held today have no price and are left out of the dollar figure.` : ''}</p>` : ''}
-      ${r.chain_confidence === 'medium' ? `<p class="cap warn">${r.chain === 'eth' ? 'Network inferred from format/ticker; OFAC did not explicitly identify this EVM network.' : 'Tron network inferred from address format; OFAC’s source ticker is XBT.'} ${esc(r.chain_rule || '')}</p>` : ''}
+      ${r.chain_confidence === 'medium' ? `<p class="cap warn">${r.chain === 'eth' ? 'OFAC didn\u2019t name the network for this address; Ethereum is assumed from its format.' : 'OFAC listed this address under a Bitcoin ticker; Tron is assumed from its format.'}</p>` : ''}
       <p class="dchips">${chips(r)}</p>
       <p class="dverdict">${verdict(r)}</p>
     </div>`;
